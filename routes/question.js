@@ -7,7 +7,7 @@ const {
   createQuestion,
   updateQuestion,
   deleteQuestion,
- 
+  listByTags,
 } = require("../controllers/question");
 
 const router = express.Router({ mergeParams: true });
@@ -19,7 +19,7 @@ router
   .route("/")
   .get(protect, advancedResults(Question), getQuestions)
   .post(protect, createQuestion);
-
+router.get("/:tags", listByTags);
 router
   .route("/:id")
   .get(protect, getQuestion)

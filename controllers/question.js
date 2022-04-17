@@ -25,6 +25,24 @@ exports.getQuestion = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: question });
 });
 
+// @desc      Get single Questions
+// @route     GET /api/v1/Questions/:id
+// @access    Public
+exports.listByTags = asyncHandler(async (req, res, next) => {
+    const { tags } = req.params;
+    console.log("first", tags);
+  const question = await Question.find({ tags: { $all: tags } });
+
+  if (!question) {
+    return next(
+      new ErrorResponse(`Question not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  res.status(200).json({ success: true, data: question });
+});
+
+
 // @desc      Create new question
 // @route     POST /api/v1/question
 // @access    Private
