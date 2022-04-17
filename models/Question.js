@@ -19,11 +19,16 @@ const QuestionSchema = new Schema(
       type: mongoose.Schema.ObjectId, //user ıd added
       ref: "User", //we can call user through this referance
     },
-
+    comments: [
+      {
+        text: String,
+        postedBy: { type: Schema.Types.ObjectId, ref: "User" },
+      },
+    ],
     upvotes: [
       {
         user: {
-          type: Schema.Types.ObjectId,
+          type: mongoose.Schema.ObjectId,
           ref: "User",
         },
       },
@@ -31,7 +36,7 @@ const QuestionSchema = new Schema(
     downvotes: [
       {
         user: {
-          type: Schema.Types.ObjectId,
+          type: mongoose.Schema.ObjectId,
           ref: "User",
         },
       },
