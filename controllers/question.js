@@ -30,7 +30,7 @@ exports.getQuestion = asyncHandler(async (req, res, next) => {
 // @route     GET /api/v1/Questions/:tags
 // @access    Public
 exports.listByTags = asyncHandler(async (req, res, next) => {
-    const { tags } = req.params;
+  const { tags } = req.params;
   const question = await Question.find({ tags: { $all: tags } });
 
   if (!question) {
@@ -41,7 +41,6 @@ exports.listByTags = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({ success: true, data: question });
 });
-
 
 // @desc      Get Lists of Tags
 // @route     GET /api/v1/Questions/:tags
@@ -62,7 +61,6 @@ exports.listTags = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({ success: true, data: question });
 });
-
 
 // @desc      search for Tags
 // @route     GET /api/v1/Questions/:tags
@@ -108,7 +106,7 @@ exports.createQuestion = asyncHandler(async (req, res, next) => {
 // @desc      Update question
 // @route     PUT /api/v1/question/:id
 // @access    Private
-exports.updateQuestion= asyncHandler(async (req, res, next) => {
+exports.updateQuestion = asyncHandler(async (req, res, next) => {
   let question = await Question.findById(req.params.id);
 
   if (!question) {
@@ -139,8 +137,8 @@ exports.updateQuestion= asyncHandler(async (req, res, next) => {
 // @route   GET /api/v1/posts/:id/comments
 // @access  Public
 exports.listByUser = asyncHandler(async (req, res, next) => {
-    const { username } = req.params;
-    console.log("first,", username);
+  const { username } = req.params;
+  console.log("first,", username);
   const user = await User.findOne({ username });
   if (!user)
     return next(new ErrorResponse(`User not found with id of ${id}`, 404));
@@ -163,7 +161,7 @@ exports.deleteQuestion = asyncHandler(async (req, res, next) => {
   }
 
   // Make sure user is question owner
-  if (question.user.toString() !== req.user.id ) {
+  if (question.user.toString() !== req.user.id) {
     return next(
       new ErrorResponse(
         `User ${req.params.id} is not authorized to delete this question`,
@@ -176,5 +174,3 @@ exports.deleteQuestion = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({ success: true, data: {} });
 });
-
-

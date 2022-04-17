@@ -27,6 +27,7 @@ const QuestionSchema = new Schema(
         },
       },
     ],
+
     downvotes: [
       {
         user: {
