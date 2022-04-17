@@ -26,11 +26,10 @@ exports.getQuestion = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Get single Questions
-// @route     GET /api/v1/Questions/:id
+// @route     GET /api/v1/Questions/:tags
 // @access    Public
 exports.listByTags = asyncHandler(async (req, res, next) => {
     const { tags } = req.params;
-    console.log("first", tags);
   const question = await Question.find({ tags: { $all: tags } });
 
   if (!question) {
@@ -42,6 +41,49 @@ exports.listByTags = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: question });
 });
 
+
+// @desc      Get Lists of Tags
+// @route     GET /api/v1/Questions/:tags
+// @access    Public
+exports.listTags = asyncHandler(async (req, res, next) => {
+  const question = await Question.aggregate([
+    { $project: { tags: 1 } },
+    { $unwind: "$tags" },
+    { $group: { _id: "$tags", count: { $sum: 1 } } },
+    { $sort: { count: -1 } },
+  ]);
+
+  if (!question) {
+    return next(
+      new ErrorResponse(`Question not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  res.status(200).json({ success: true, data: question });
+});
+
+
+// @desc      search for Tags
+// @route     GET /api/v1/Questions/:tags
+// @access    Public
+exports.searchTags = asyncHandler(async (req, res, next) => {
+  const { tag = "" } = req.params;
+  const question = await Question.aggregate([
+    { $project: { tags: 1 } },
+    { $unwind: "$tags" },
+    { $group: { _id: "$tags", count: { $sum: 1 } } },
+    { $match: { _id: { $regex: tag, $options: "i" } } },
+    { $sort: { count: -1 } },
+  ]);
+
+  if (!question) {
+    return next(
+      new ErrorResponse(`Question not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  res.status(200).json({ success: true, data: question });
+});
 
 // @desc      Create new question
 // @route     POST /api/v1/question

@@ -8,6 +8,8 @@ const {
   updateQuestion,
   deleteQuestion,
   listByTags,
+  listTags,
+  searchTags,
 } = require("../controllers/question");
 
 const router = express.Router({ mergeParams: true });
@@ -19,11 +21,18 @@ router
   .route("/")
   .get(protect, advancedResults(Question), getQuestions)
   .post(protect, createQuestion);
-router.get("/:tags", listByTags);
+// router.get("/listTags", listTags);
+// router.get("/:tags", listByTags);
+
+router.route("/listTags").get(listTags);
+
 router
   .route("/:id")
   .get(protect, getQuestion)
   .put(protect, updateQuestion)
   .delete(protect, deleteQuestion);
 
+router.route("/qtags/:tags").get(listByTags);
+
+router.route("/tags/:tag").get(searchTags);
 module.exports = router;
