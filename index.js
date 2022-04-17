@@ -24,7 +24,8 @@ connectDB();
 
 const auth = require("./routes/auth");
 const users = require("./routes/users");
- const question = require("./routes/question");
+const question = require("./routes/question");
+const comments = require("./routes/comments");
 
 const app = express();
 
@@ -69,9 +70,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Mount routers
 
-app.use("/api/v1/question", question);
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/users", users);
+app.use("/api/v1/comments", comments);
+app.use("/api/v1/question", question);
 
 app.use(errorHandler);
 

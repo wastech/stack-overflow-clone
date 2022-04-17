@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: "user",
+    ref: "User",
     required: true,
   },
-  questionId: {
+  question: {
     type: mongoose.Schema.ObjectId,
     ref: "Question",
     required: true,

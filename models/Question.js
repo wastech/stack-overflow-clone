@@ -19,12 +19,6 @@ const QuestionSchema = new Schema(
       type: mongoose.Schema.ObjectId, //user ıd added
       ref: "User", //we can call user through this referance
     },
-    comments: [
-      {
-        text: String,
-        postedBy: { type: Schema.Types.ObjectId, ref: "User" },
-      },
-    ],
     upvotes: [
       {
         user: {
@@ -47,8 +41,23 @@ const QuestionSchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true }
 );
+// Cascade delete comments when a post is deleted
+QuestionSchema.pre("remove", async function (next) {
+  console.log(`Comment being removed from post ${this._id}`);
+  await this.model("commentSchema").deleteMany({ question: this._id });
+  next();
+});
+
+// Reverse populate with virtuals
+QuestionSchema.virtual("comments", {
+  ref: "Comment",
+  localField: "_id",
+  foreignField: "question",
+  justOne: false,
+});
+
 QuestionSchema.pre("save", function (next) {
   if (!this.isModified("title")) {
     next();
