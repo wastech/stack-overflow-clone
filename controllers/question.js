@@ -2,6 +2,7 @@ const path = require("path");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const Question = require("../models/Question");
+const User = require("../models/User");
 
 // @desc      Get all Questions
 // @route     GET /api/v1/Question
@@ -132,6 +133,21 @@ exports.updateQuestion= asyncHandler(async (req, res, next) => {
   });
 
   res.status(200).json({ success: true, data: question });
+});
+
+// @desc    Get comments by post
+// @route   GET /api/v1/posts/:id/comments
+// @access  Public
+exports.listByUser = asyncHandler(async (req, res, next) => {
+    const { username } = req.params;
+    console.log("first,", username);
+  const user = await User.findOne({ username });
+  if (!user)
+    return next(new ErrorResponse(`User not found with id of ${id}`, 404));
+
+  const questions = await Question.find({ user: user.id });
+
+  res.status(200).json({ success: true, data: questions });
 });
 
 // @desc      Delete question

@@ -9,6 +9,7 @@ const {
   deleteQuestion,
   listByTags,
   listTags,
+  listByUser,
   searchTags,
 } = require("../controllers/question");
 
@@ -31,7 +32,7 @@ router
   .get(protect, getQuestion)
   .put(protect, updateQuestion)
   .delete(protect, deleteQuestion);
-
+  router.route("/user/:username").get(listByUser);
 router.route("/qtags/:tags").get(listByTags);
 
 router.route("/tags/:tag").get(searchTags);
