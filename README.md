@@ -1,5 +1,5 @@
 # stack-overflow-api-clone
-
+>This is a stackOverflow cloned API (Application Programming Interface) that helps people find the answers they need, when they need them 
 
 #### Features
 >CRUD (Create, Read, Update And Delete)>
