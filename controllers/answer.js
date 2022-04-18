@@ -17,8 +17,8 @@ exports.getAnswers = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: answser });
 });
 
-// @desc    Get comments by video id
-// @route   GET /api/v1/comments/:question/question
+// @desc    Get answers by quetion id
+// @route   GET /api/v1/answer/:question/answers
 // @access  Public
 exports.getAnswerByQuestionId = asyncHandler(async (req, res, next) => {
   const answser = await Answer.find({
@@ -40,8 +40,8 @@ exports.getAnswerByQuestionId = asyncHandler(async (req, res, next) => {
     data: answser,
   });
 });
-// @desc    Create comment
-// @route   POST /api/v1/posts/:id/comments
+// @desc    Create Answer
+// @route   POST /api/v1/question/:id/answer
 // @access  Public
 exports.createAnswer = asyncHandler(async (req, res, next) => {
   const question = await Question.findById({ _id: req.body.question });
@@ -53,7 +53,7 @@ exports.createAnswer = asyncHandler(async (req, res, next) => {
       )
     );
 
-  const answser = await Answser.create({
+  const answser = await Answer.create({
     ...req.body,
     user: req.user._id,
   });
@@ -61,13 +61,13 @@ exports.createAnswer = asyncHandler(async (req, res, next) => {
   res.status(201).json({ success: true, data: answser });
 });
 
-// @desc    Delete Comment
-// @route   DELETE /api/v1/comments/:id
+// @desc    Delete answer
+// @route   DELETE /api/v1/answers/:id
 // @access  Private (admin)
 exports.deleteAnswer = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
 
-  const answser = await Answser.findByIdAndDelete(id);
+  const answser = await Answer.findByIdAndDelete(id);
 
   if (!answser) {
     return next(new ErrorResponse(`Answser with id ${id} not found`, 404));
