@@ -43,7 +43,15 @@ Rename the config/.env.example to .env, then modify to your environment variable
     FROM_EMAIL=noreply@quizapp.com
     FROM_NAME=wastech
  ```
-    
+ 
+ ### HTTP Requests
+ All API requests are made by sending a secure HTTPS request using the GET, POST, PUT methods to work with the 3 resource
+ * Users
+ * Questions
+ * Answers
+ * Comments
+ * Tag
+
 
 ### Installation
 Install all npm dependecies
