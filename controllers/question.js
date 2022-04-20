@@ -103,6 +103,53 @@ exports.createQuestion = asyncHandler(async (req, res, next) => {
   });
 });
 
+// @desc      vote Question
+// @route     PUT /api/v1/question/:id/upvotes
+// @access    Private
+exports.voteQuestion = asyncHandler(async (req, res, next) => {
+  let question = await Question.findById(req.params.id);
+
+  if (!question) {
+    return next(
+      new ErrorResponse(`Question not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  if (!question.upvotes?.includes(req.user._id.toString())) {
+    console.log("first,", question.user);
+    await question.updateOne({ $push: { upvotes: req.user._id.toString() } });
+    res.status(200).json({ message: "The question has been liked" });
+    next();
+  } else {
+    await question.updateOne({ $pull: { upvotes: req.user._id.toString() } });
+    res.status(200).json({ message: "The question has been disliked" });
+  }
+});
+
+// @desc      vote Question
+// @route     PUT /api/v1/question/:id/downvotes
+// @access    Private
+exports.downvoteQuestion = asyncHandler(async (req, res, next) => {
+  let question = await Question.findById(req.params.id);
+
+  if (!question) {
+    return next(
+      new ErrorResponse(`Question not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  if (question.downvotes?.includes(req.user._id.toString())) {
+    await question.updateOne({ $pull: { downvotes: req.user._id.toString() } });
+    res.status(200).json({ message: "The question has been disliked" });
+    next();
+  } else {
+    await question.updateOne({
+      $push: { downvotes: req.user._id.toString() },
+    });
+    res.status(200).json({ message: "The question has been liked" });
+  }
+});
+
 // @desc      Update question
 // @route     PUT /api/v1/question/:id
 // @access    Private
@@ -138,7 +185,6 @@ exports.updateQuestion = asyncHandler(async (req, res, next) => {
 // @access  Public
 exports.listByUser = asyncHandler(async (req, res, next) => {
   const { username } = req.params;
-  console.log("first,", username);
   const user = await User.findOne({ username });
   if (!user)
     return next(new ErrorResponse(`User not found with id of ${id}`, 404));

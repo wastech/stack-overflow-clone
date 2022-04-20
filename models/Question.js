@@ -21,19 +21,15 @@ const QuestionSchema = new Schema(
     },
     upvotes: [
       {
-        user: {
-          type: mongoose.Schema.ObjectId,
-          ref: "User",
-        },
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
       },
     ],
 
     downvotes: [
       {
-        user: {
-          type: mongoose.Schema.ObjectId,
-          ref: "User",
-        },
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
       },
     ],
     score: { type: Number, default: 0 },
