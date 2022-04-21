@@ -1,6 +1,11 @@
 # stack-overflow-api-clone
 >This is a stackOverflow cloned API (Application Programming Interface) that helps people find the answers they need, when they need them 
 
+
+![how](https://user-images.githubusercontent.com/56930241/164344119-4dcd2137-f038-448f-8e6f-cd1ccd62a1fb.png)
+
+
+
 #### Features
 >CRUD (Create, Read, Update And Delete)>
 * Authentication with JWT (Reset Password with email) 
