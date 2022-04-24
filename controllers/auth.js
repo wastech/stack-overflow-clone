@@ -8,7 +8,7 @@ const User = require("../models/User");
 // @route     POST /api/v1/auth/register
 // @access    Public
 exports.register = asyncHandler(async (req, res, next) => {
-  const { username, email, password, role } = req.body;
+  const { username, email,profilePhoto, password, role } = req.body;
 
   // Create user
   const user = await User.create({
@@ -16,6 +16,7 @@ exports.register = asyncHandler(async (req, res, next) => {
     email,
     password,
     role,
+    profilePhoto,
   });
 
   sendTokenResponse(user, 200, res);
@@ -81,7 +82,7 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 // @access    Private
 exports.updateDetails = asyncHandler(async (req, res, next) => {
   const fieldsToUpdate = {
-    name: req.body.name,
+    username: req.body.username,
     email: req.body.email,
   };
 
