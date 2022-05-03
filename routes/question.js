@@ -17,12 +17,14 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-const advancedResults = require("../middleware/advancedResults");
+const advancedResults = require("../middleware/questionAdvResults");
 const { protect, authorize } = require("../middleware/auth");
 
 router
   .route("/")
-  .get(protect, advancedResults(Question), getQuestions)
+  .get( advancedResults(Question, 
+    ("user")
+  ), getQuestions)
   .post(protect, createQuestion);
 // router.get("/listTags", listTags);
 // router.get("/:tags", listByTags);

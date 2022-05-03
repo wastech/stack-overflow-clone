@@ -12,7 +12,7 @@ const answerSchema = new Schema({
     ref: "Question",
     required: true,
   },
-  body: { type: String, required: true },
+  answer: { type: String, required: true },
   created: { type: Date, default: Date.now },
 });
 

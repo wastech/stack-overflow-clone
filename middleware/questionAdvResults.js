@@ -1,5 +1,4 @@
-
-const advancedResults = (model, populate) => async (req, res, next) => {
+const questionAdvResults = (model, populate) => async (req, res, next) => {
   let query;
 
   // Copy req.query
@@ -21,7 +20,7 @@ const advancedResults = (model, populate) => async (req, res, next) => {
   // );
   const keyword = req.query.keyword
     ? {
-        username: {
+        title: {
           $regex: req.query.keyword,
           $options: "i",
         },
@@ -46,7 +45,7 @@ const advancedResults = (model, populate) => async (req, res, next) => {
 
   // Pagination
   const page = parseInt(req.query.page, 10) || 1;
-  const limit = parseInt(req.query.limit, 10) || 25;
+  const limit = parseInt(req.query.limit, 10) || 15;
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
   const total = await model.countDocuments();
@@ -74,20 +73,19 @@ const advancedResults = (model, populate) => async (req, res, next) => {
     pagination.prev = {
       page: page - 1,
       limit,
-   
     };
   }
 
   res.advancedResults = {
     success: true,
-    total,
-    limit,
     count: results.length,
     pagination,
     data: results,
+    limit,
+    total,
   };
 
   next();
 };
 
-module.exports = advancedResults;
+module.exports = questionAdvResults;

@@ -13,6 +13,8 @@ const hpp = require("hpp");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
+var compression = require("compression");
+
 
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -29,7 +31,7 @@ const comments = require("./routes/comments");
 const answer = require("./routes/answer");
 
 const app = express();
-
+app.use(compression());
 // Body parser
 app.use(express.json());
 
