@@ -31,7 +31,9 @@ exports.getQuestion = asyncHandler(async (req, res, next) => {
 // @access    Public
 exports.listByTags = asyncHandler(async (req, res, next) => {
   const { tags } = req.params;
-  const question = await Question.find({ tags: { $all: tags } });
+  const question = await Question.find({ tags: { $all: tags } }).populate(
+    "user"
+  );
 
   if (!question) {
     return next(
@@ -88,11 +90,11 @@ exports.searchTags = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/question
 // @access    Private
 exports.createQuestion = asyncHandler(async (req, res, next) => {
-  const { title, content, tags } = req.body;
-
+  const { title, body } = req.body;
+  const tags = req.body.tags.replace(/\s/g, "").split(",");
   const question = await Question.create({
     title,
-    content,
+    body,
     tags,
     user: req.user.id,
   });

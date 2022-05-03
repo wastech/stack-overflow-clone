@@ -19,6 +19,7 @@
   "homepage": "https://github.com/wastech/stack-overflow-clone#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cluster": "^0.7.7",
     "colors": "^1.4.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",

@@ -9,9 +9,9 @@ const QuestionSchema = new Schema(
       required: [true, "please provide a title"],
       minlength: [10, "Please provide title at least 10 characters"],
     },
-    content: {
+    body: {
       type: String,
-      required: [true, "please provide a title"],
+      required: [true, "please provide a body"],
       minlength: [10, "Please provide title at least 20 characters"],
     },
     slug: String,

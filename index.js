@@ -13,7 +13,7 @@ const hpp = require("hpp");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
-var compression = require("compression");
+const compression = require("compression");
 
 
 // Load env vars
@@ -64,9 +64,12 @@ app.use(limiter);
 
 // Prevent http param pollution
 app.use(hpp());
-
+var corsOptions = {
+  origin: "http://localhost:8080",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 // Enable CORS
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
