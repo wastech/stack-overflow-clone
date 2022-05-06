@@ -117,8 +117,8 @@ exports.voteQuestion = asyncHandler(async (req, res, next) => {
     );
   }
 
+  
   if (!question.upvotes?.includes(req.user._id.toString())) {
-    console.log("first,", question.user);
     await question.updateOne({ $push: { upvotes: req.user._id.toString() } });
     res.status(200).json({ message: "The question has been voted" });
     next();

@@ -15,5 +15,11 @@ const answerSchema = new Schema({
   answer: { type: String, required: true },
   created: { type: Date, default: Date.now },
 });
+// answerSchema.pre(/^find/, function () {
+//   this.populate({
+//     path: "question",
+//     // options: { select: "name" }, // <-- wrap `select` in `options` here...
+//   })
 
+// });
 module.exports = mongoose.model("Answer", answerSchema);

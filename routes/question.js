@@ -22,9 +22,7 @@ const { protect, authorize } = require("../middleware/auth");
 
 router
   .route("/")
-  .get( advancedResults(Question, 
-    ("user")
-  ), getQuestions)
+  .get(advancedResults(Question, "user answers"), getQuestions)
   .post(protect, createQuestion);
 // router.get("/listTags", listTags);
 // router.get("/:tags", listByTags);

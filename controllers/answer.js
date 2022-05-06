@@ -52,8 +52,10 @@ exports.createAnswer = asyncHandler(async (req, res, next) => {
         404
       )
     );
-
+  // .replace("&lt;", "<"),
+  const answer = req.body.answer.replace("&lt;", "<").replace("&gt;", ">");
   const answser = await Answer.create({
+    answer,
     ...req.body,
     user: req.user._id,
   });

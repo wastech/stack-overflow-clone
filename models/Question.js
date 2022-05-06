@@ -53,7 +53,20 @@ QuestionSchema.virtual("comments", {
   localField: "_id",
   foreignField: "question",
   justOne: false,
+  count: true,
 });
+
+
+// Reverse populate with virtuals
+QuestionSchema.virtual("answers", {
+  ref: "Answer",
+  localField: "_id",
+  foreignField: "question",
+  justOne: false,
+  count: true,
+});
+
+
 
 QuestionSchema.pre("save", function (next) {
   if (!this.isModified("title")) {
