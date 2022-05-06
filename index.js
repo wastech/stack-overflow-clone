@@ -62,12 +62,9 @@ app.use(limiter);
 
 // Prevent http param pollution
 app.use(hpp());
-var corsOptions = {
-  origin: "https://stackoverflowapp.vercel.app",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+
 // Enable CORS
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
