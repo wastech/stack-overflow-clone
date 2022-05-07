@@ -40,7 +40,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Dev logging middleware
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "production") {
   app.use(morgan("dev"));
 }
 
@@ -63,14 +63,13 @@ app.use(limiter);
 // Prevent http param pollution
 app.use(hpp());
 var corsOptions = {
-  origin: "http://localhost:8080",
+  origin: process.env.CLIENT_URL,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 // Enable CORS
 app.use(cors(corsOptions));
 
 // Set static folder
-app.use(express.static(path.join(__dirname, "public")));
 
 // Mount routers
 // pour assainir les données envoyer par les utilisateurs
