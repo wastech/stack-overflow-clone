@@ -62,12 +62,14 @@ app.use(limiter);
 
 // Prevent http param pollution
 app.use(hpp());
-
+var corsOptions = {
+  origin: process.env.CLIENT_URL,
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 // Enable CORS
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Set static folder
-app.use(express.static(path.join(__dirname, "public")));
 
 // Mount routers
 // pour assainir les données envoyer par les utilisateurs
