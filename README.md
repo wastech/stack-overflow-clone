@@ -1,8 +1,8 @@
 # stack-overflow-api-clone
 >This is a stackOverflow cloned API (Application Programming Interface) that helps people find the answers they need, when they need them 
 
+![st1](https://user-images.githubusercontent.com/56930241/167307506-9ee770ec-a869-43c2-a468-cb439819469a.png)
 
-![st1](https://user-images.githubusercontent.com/56930241/167307268-b1770b0a-c0e0-4c8b-8f5
 
 ![st2](https://user-images.githubusercontent.com/56930241/167307272-4356d782-10cf-45c7-99a1-0da1288833ec.png)
 ![st3](https://user-images.githubusercontent.com/56930241/167307275-49abe8ba-43a5-4855-998e-c1ccdd9311bc.png)
