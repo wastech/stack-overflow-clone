@@ -2,7 +2,15 @@
 >This is a stackOverflow cloned API (Application Programming Interface) that helps people find the answers they need, when they need them 
 
 
-![how](https://user-images.githubusercontent.com/56930241/164344119-4dcd2137-f038-448f-8e6f-cd1ccd62a1fb.png)
+![st1](https://user-images.githubusercontent.com/56930241/167307268-b1770b0a-c0e0-4c8b-8f5
+
+![st2](https://user-images.githubusercontent.com/56930241/167307272-4356d782-10cf-45c7-99a1-0da1288833ec.png)
+![st3](https://user-images.githubusercontent.com/56930241/167307275-49abe8ba-43a5-4855-998e-c1ccdd9311bc.png)
+![st4](https://user-images.githubusercontent.com/56930241/167307276-691ddc17-3aa5-4b64-98ab-669e86db1616.png)
+![st5](https://user-images.githubusercontent.com/56930241/167307280-9547a67b-dc7a-49ef-a81e-66e88da7d6a5.png)
+e-430171df01fe.png)
+
+)
 
 
 
