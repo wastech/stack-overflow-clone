@@ -1,5 +1,5 @@
 # stack-overflow-api-clone
->The API provided is a replica of Stack Overflow, designed to assist users in finding timely and relevant answers to their questions. It is developed using a technology stack comprising MongoDB, Express, Node.js, and Mongoose, known as the MERN stack. This combination of technologies enables efficient data storage and retrieval, seamless communication between the client and server, and easy management of the API's functionality.
+>The API provided is a replica of Stack Overflow, designed to assist users in finding timely and relevant answers to their questions. It is developed using a technology stack comprising MongoDB, Express, Vue.js,Node.js, and Mongoose, known as the MEVN stack. This combination of technologies enables efficient data storage and retrieval, seamless communication between the client and server, and easy management of the API's functionality.
 
 ![st1](https://user-images.githubusercontent.com/56930241/167307506-9ee770ec-a869-43c2-a468-cb439819469a.png)
 
