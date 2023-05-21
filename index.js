@@ -67,24 +67,7 @@ var corsOptions = {
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 // Enable CORS
-app.use(cors(corsOptions));
-
-// Set static folder
-
-// Mount routers
-// pour assainir les données envoyer par les utilisateurs
-// const sanitizer = (request, response, next) => {
-//   if (request.body) {
-//     for (const propName in request.body) {
-//       // Grâce à request.body -> nouvelle valeur assainie grâce à function sanitizeHtml du module sanitize-html
-//       request.body[propName] = sanitizeHtml(request.body[propName]);
-//       console.log(" request.body[propName] ", request.body[propName]);
-//     }
-//   }
-//   next();
-// };
-// middleware chargé d'assinir les données reçues doit être après celui qui organise les données reçues dans request.body (urlencoded etc.)
-// app.use(sanitizer);
+app.use(cors());
 
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/users", users);
