@@ -59,7 +59,6 @@ const limiter = rateLimit({
   max: 100,
 });
 app.use(limiter);
-
 // Enable CORS
 app.use(cors());
 
