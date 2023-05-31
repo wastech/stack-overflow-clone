@@ -60,12 +60,6 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Prevent http param pollution
-app.use(hpp());
-var corsOptions = {
-  origin: process.env.CLIENT_URL,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
 // Enable CORS
 app.use(cors());
 
